@@ -14,5 +14,6 @@ public class ZombieHealthComponent : HealthComponent
     public override void Destroy()
     {
         zombieStateMachine.ChangeState(ZombieStateType.Dying);
+        GameManager.instance.AddZombieCount();
     }
 }
