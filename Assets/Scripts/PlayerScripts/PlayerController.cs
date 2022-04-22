@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine.Editor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public GameUIController uiController;
     public WeaponHolder weaponHolder;
     public HealthComponent healthComponent;
+    
+    private GameObject m_pausePanel;
 
     private void Awake()
     {
@@ -23,20 +26,31 @@ public class PlayerController : MonoBehaviour
         inventory = GetComponent<InventoryComponent>();
         uiController = FindObjectOfType<GameUIController>();
         healthComponent = GetComponent<HealthComponent>();
+        m_pausePanel = GameObject.Find("PausePanel");
+        m_pausePanel.SetActive(false);
+    }
+    public void OnPause()
+    {
+        Time.timeScale = 0;
+        m_pausePanel.SetActive(true);
+        AppEvents.InvokeMouseCursorEnable(true);
+        PauseActionMap();
+        m_pausePanel.GetComponent<PauseMenuController>().SetPauseMenu();
+    }
+
+    public void GameActionMap()
+    {
+        GetComponent<PlayerInput>().SwitchCurrentActionMap("PlayerActionMap");
+    }
+
+    public void PauseActionMap()
+    {
+        GetComponent<PlayerInput>().SwitchCurrentActionMap("PauseActionMap");
     }
 
     public void OnInventory(InputValue value)
     {
-        if (inInventory)
-        {
-            inInventory = false;
-        }
-        else
-        {
-            inInventory = true;
-        }
-
-        OpenInventory(inInventory);
+        // Do nothing
     }
 
     private void OpenInventory(bool open)

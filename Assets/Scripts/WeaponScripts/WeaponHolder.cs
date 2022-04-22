@@ -24,13 +24,14 @@ public class WeaponHolder : MonoBehaviour
     public readonly int isFiringHash = Animator.StringToHash("IsFiring");
     public readonly int isReloadingHash = Animator.StringToHash("IsReloading");
 
+    public WeaponScriptable weaponToEquip;
+
     // Start is called before the first frame update
     void Start()
     {
         playerController = GetComponent<PlayerController>();
         playerAnimator = GetComponent<Animator>();
-
-
+        EquipWeapon(weaponToEquip);
     }
 
     // Update is called once per frame
@@ -51,6 +52,8 @@ public class WeaponHolder : MonoBehaviour
     }
     public void OnFire(InputValue value)
     {
+        if (Time.timeScale == 0) return;
+
         if (!equippedWeapon) return;
 
         firingPressed = value.isPressed;

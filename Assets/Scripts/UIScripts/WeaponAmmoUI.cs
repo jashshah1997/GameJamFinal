@@ -29,7 +29,6 @@ public class WeaponAmmoUI : MonoBehaviour
 
     void OnWeaponEquipped(WeaponComponent _weaponComponent)
     {
-        Debug.Log("hek");
         weaponComponent = _weaponComponent;
     }
 
