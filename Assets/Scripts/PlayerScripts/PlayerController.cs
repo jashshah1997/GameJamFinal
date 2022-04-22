@@ -38,6 +38,15 @@ public class PlayerController : MonoBehaviour
         m_pausePanel.GetComponent<PauseMenuController>().SetPauseMenu();
     }
 
+    public void OnEndGame(int score)
+    {
+        Time.timeScale = 0;
+        m_pausePanel.SetActive(true);
+        AppEvents.InvokeMouseCursorEnable(true);
+        PauseActionMap();
+        m_pausePanel.GetComponent<PauseMenuController>().SetLevelFinished(score);
+    }
+
     public void GameActionMap()
     {
         GetComponent<PlayerInput>().SwitchCurrentActionMap("PlayerActionMap");
