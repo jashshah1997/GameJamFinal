@@ -49,7 +49,7 @@ public class ItemPickupComponent : MonoBehaviour
         }
         //TODO: add to inventory here
         //TODO: get reference to the player inventory, add item to it
-
+        itemInstance.OnPickupItem(other.gameObject.GetComponent<PlayerController>());
         Destroy(gameObject);
     }
 }

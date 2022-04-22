@@ -32,6 +32,11 @@ public abstract class ItemScript : ScriptableObject
 
     public abstract void UseItem(PlayerController playerController);
 
+    public virtual void OnPickupItem(PlayerController playerController)
+    {
+        Debug.Log("Not implemented");
+    }
+
     public virtual void DeleteItem(PlayerController playerController)
     {
         OnItemDestroyed?.Invoke();

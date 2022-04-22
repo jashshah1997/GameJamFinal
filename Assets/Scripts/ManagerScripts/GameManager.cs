@@ -39,6 +39,11 @@ public class GameManager : Singleton<GameManager>
         m_zombiesShot++;
     }
 
+    public void AddRemainingTime(int value)
+    {
+        m_currentTime += value;
+    }
+
     void EnableCursor(bool enable)
     {
         if (enable)
