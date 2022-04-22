@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class AK47Component : WeaponComponent
 {
+    public AudioSource gunSound;
     Vector3 hitLocation;
     protected override void FireWeapon()
     {
         if (weaponStats.bulletsInClip > 0 && !isReloading)
         {
+            gunSound.Play();
             base.FireWeapon();
 
             if (firingEffect)
